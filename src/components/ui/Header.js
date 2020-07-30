@@ -211,7 +211,7 @@ function ElevationScroll(props) {
        onChange={handleChangeTab}
        className={classes.tabContainer}
        indicatorColor="primary">
-                 <Tab className={classes.tab} label="Tableau de Bord" component={Link}  to="/"/>
+            <Tab className={classes.tab} label="Tableau de Bord" component={Link}  to="/"/>
             <Tab className={classes.tab} label="Utilisateurs"  component={Link}  to="/users"/>
             <Tab className={classes.tab} label="Les Entrées" component={Link}  to="/entrees"/>
             <Tab className={classes.tab} label="Les Sorties" component={Link}  to="/sorties"/>S
@@ -263,7 +263,7 @@ function ElevationScroll(props) {
             onClick={()=> {setOpenDrawer(false);setValue(2)}} 
             divider button 
             component={Link}
-             to="/entree"
+             to="/entrees"
              selected={value === 2}>
            <ListItemText  className={value === 2 ? [classes.drawerItem,classes.drawerItemSelected]:classes.drawerItem} disableTypography>Entree</ListItemText>
            </ListItem>
@@ -271,7 +271,7 @@ function ElevationScroll(props) {
             onClick={()=> {setOpenDrawer(false);setValue(3)}} 
             divider button 
             component={Link}
-             to="/sortie"
+             to="/sorties"
              selected={value === 3}>
            <ListItemText  className={value === 3 ? [classes.drawerItem,classes.drawerItemSelected]:classes.drawerItem} disableTypography>Sortie</ListItemText>
            </ListItem>
