@@ -265,7 +265,7 @@ function ElevationScroll(props) {
             component={Link}
              to="/entrees"
              selected={value === 2}>
-           <ListItemText  className={value === 2 ? [classes.drawerItem,classes.drawerItemSelected]:classes.drawerItem} disableTypography>Entree</ListItemText>
+           <ListItemText  className={value === 2 ? [classes.drawerItem,classes.drawerItemSelected]:classes.drawerItem} disableTypography>Les Entrées</ListItemText>
            </ListItem>
            <ListItem 
             onClick={()=> {setOpenDrawer(false);setValue(3)}} 
@@ -273,7 +273,16 @@ function ElevationScroll(props) {
             component={Link}
              to="/sorties"
              selected={value === 3}>
-           <ListItemText  className={value === 3 ? [classes.drawerItem,classes.drawerItemSelected]:classes.drawerItem} disableTypography>Sortie</ListItemText>
+           <ListItemText  className={value === 3 ? [classes.drawerItem,classes.drawerItemSelected]:classes.drawerItem} disableTypography>Les Sorties</ListItemText>
+           </ListItem>
+      
+           <ListItem 
+            onClick={()=> {setOpenDrawer(false);setValue(4)}} 
+            divider button 
+            component={Link}
+             to="/personnel"
+             selected={value ===4}>
+           <ListItemText  className={value === 4 ? [classes.drawerItem,classes.drawerItemSelected]:classes.drawerItem} disableTypography>Le personnel</ListItemText>
            </ListItem>
            <ListItem  className={value === 5 ? [classes.drawerItem,classes.drawerItemSelected]:classes.drawerItemEstimate} onClick={()=> {setOpenDrawer(false);setValue(5);logout()}} divider button component={Link} to="/logout" selected={value === 5}>
              <ListItemText className={classes.drawerItem} disableTypography>Deconnexion</ListItemText>
