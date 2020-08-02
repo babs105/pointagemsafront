@@ -12,11 +12,17 @@ import {agentService} from '../../../service/agentService';
 
 const useStyles = makeStyles(theme =>({
     textField:{
-        width:"20rem"
+        width:"20rem",
+        [theme.breakpoints.down("sm")]:{
+          width:"10rem",
+        }
     },
     sendButton:{
       width:"20rem",
-      marginTop:"2rem"
+      marginTop:"2rem",
+      [theme.breakpoints.down("sm")]:{
+        width:"10rem",
+      }
     },
     margin: {
       margin: theme.spacing(2) ,
