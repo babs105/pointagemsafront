@@ -40,19 +40,20 @@ const useStyles = makeStyles(theme => ({
 export default function EntreeListToday(props) {
 
   const classes = useStyles();
+  const entreesToday=props.entreesToday;
 
 
-  const [data, setData] = useState([]); 
   
   
+  
 
-  useEffect(() => {    
-            entreeService.getAllPointageToday()
-            .then((res) => {
-                setData(res);
-            });           
+//   useEffect(() => {    
+//             entreeService.getAllPointageToday()
+//             .then((res) => {
+//                 setData(res);
+//             });           
         
-}, []); 
+// }, []); 
 
 
 let i=0;
@@ -91,7 +92,7 @@ let i=0;
         </TableRow>
           </TableHead>  
           <TableBody>  
-            {data.map(row => {  
+            {entreesToday.map(row => {  
               return (  
                 <TableRow key={i=i+1}>
                   {/* <TableCell align="center">{i=i+1}</TableCell> */}

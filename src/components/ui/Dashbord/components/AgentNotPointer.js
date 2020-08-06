@@ -39,20 +39,7 @@ const useStyles = makeStyles(theme => ({
 export default function AgentNotPointer(props) {
 
   const classes = useStyles();
-
-
-  const [data, setData] = useState([]); 
-  
-  
-
-  useEffect(() => {    
-            entreeService.getAllAgentNotPointToday()
-            .then((res) => {
-                setData(res);
-            });           
-        
-}, []); 
-
+  const agentNotPointerToday = props.agentNotPointerToday;
 
 let i=0;
   return (
@@ -90,7 +77,7 @@ let i=0;
         </TableRow>
           </TableHead>  
           <TableBody>  
-            {data.map(row => {  
+            {agentNotPointerToday.map(row => {  
               return (  
                 <TableRow key={i=i+1}>
                   {/* <TableCell align="center">{i=i+1}</TableCell>  */}

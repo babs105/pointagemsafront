@@ -152,12 +152,16 @@ function ElevationScroll(props) {
             setValue(4);
         }
           break;  
-      case "/logout":
+      case "/rapport":
             if(value !== 5){
               setValue(5);
          }
          break;  
-                                      
+      case "/logout":
+            if(value !== 6){
+              setValue(6);
+         }
+         break;                                 
       default:
         break;
     }
@@ -200,7 +204,7 @@ function ElevationScroll(props) {
             <Tab className={classes.tab} label="Les Entrées" component={Link}  to="/entrees"/>
             <Tab className={classes.tab} label="Les Sorties" component={Link}  to="/sorties"/>
             <Tab className={classes.tab} label="Le Personnel " component={Link}  to="/personnel"/>
-        
+            <Tab className={classes.tab} label="Rapports" component={Link}  to="/rapport"/>
        </Tabs>
        ):null
     }
@@ -214,7 +218,7 @@ function ElevationScroll(props) {
             <Tab className={classes.tab} label="Tableau de Bord" component={Link}  to="/"/>
             <Tab className={classes.tab} label="Utilisateurs"  component={Link}  to="/users"/>
             <Tab className={classes.tab} label="Les Entrées" component={Link}  to="/entrees"/>
-            <Tab className={classes.tab} label="Les Sorties" component={Link}  to="/sorties"/>S
+            <Tab className={classes.tab} label="Les Sorties" component={Link}  to="/sorties"/>
            
           </Tabs>
           ):null
@@ -284,7 +288,15 @@ function ElevationScroll(props) {
              selected={value ===4}>
            <ListItemText  className={value === 4 ? [classes.drawerItem,classes.drawerItemSelected]:classes.drawerItem} disableTypography>Le personnel</ListItemText>
            </ListItem>
-           <ListItem  className={value === 5 ? [classes.drawerItem,classes.drawerItemSelected]:classes.drawerItemEstimate} onClick={()=> {setOpenDrawer(false);setValue(5);logout()}} divider button component={Link} to="/logout" selected={value === 5}>
+           <ListItem 
+            onClick={()=> {setOpenDrawer(false);setValue(4)}} 
+            divider button 
+            component={Link}
+             to="/rapport"
+             selected={value ===5}>
+           <ListItemText  className={value === 5 ? [classes.drawerItem,classes.drawerItemSelected]:classes.drawerItem} disableTypography>Rapports</ListItemText>
+           </ListItem>
+           <ListItem  className={value === 6 ? [classes.drawerItem,classes.drawerItemSelected]:classes.drawerItemEstimate} onClick={()=> {setOpenDrawer(false);setValue(6);logout()}} divider button component={Link} to="/logout" selected={value === 6}>
              <ListItemText className={classes.drawerItem} disableTypography>Deconnexion</ListItemText>
            </ListItem>
          </List>

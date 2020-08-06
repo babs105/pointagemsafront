@@ -40,19 +40,20 @@ const useStyles = makeStyles(theme => ({
 export default function SortieListToday(props) {
 
   const classes = useStyles();
+  const sortiesToday = props.sortiesToday;
 
 
-  const [data, setData] = useState([]); 
+  // const [data, setData] = useState([]); 
   
   
 
-  useEffect(() => {    
-            sortieService.getAllDepointageToday()
-            .then((res) => {
-                setData(res);
-            });           
+//   useEffect(() => {    
+//             sortieService.getAllDepointageToday()
+//             .then((res) => {
+//                 setData(res);
+//             });           
         
-}, []); 
+// }, []); 
 
 
 let i=0;
@@ -91,7 +92,7 @@ let i=0;
         </TableRow>
           </TableHead>  
           <TableBody>  
-            {data.map(row => {  
+            {sortiesToday.map(row => {  
               return (  
                 <TableRow key={i=i+1}>
                   {/* <TableCell align="center">{i=i+1}</TableCell> */}

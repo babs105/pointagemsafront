@@ -10,6 +10,7 @@ import SortieList from '../components/ui/Sortie/SortieList';
 import Dashboard from '../components/ui/Dashbord/Dashboard';
 import PersonnelList from '../components/ui/Personnel/PersonnelList';
 import PersonnelAdd from '../components/ui/Personnel/Personnel';
+import Rapport from '../components/ui/Rapport/Rapport';
 
 const PrivateRoutes = () => {
 	
@@ -26,6 +27,7 @@ const PrivateRoutes = () => {
 			<Route path="/addsortie" exact component={SortieAdd} />
 			<Route path="/sorties" exact component={SortieList} />
 			<Route path="/personnel" exact component={PersonnelList} />
+			<Route path="/rapport" exact component={Rapport} />
 			<Route path="/addagent" exact component={PersonnelAdd} />
 			
 		</Switch>

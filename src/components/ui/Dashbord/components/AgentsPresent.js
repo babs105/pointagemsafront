@@ -40,21 +40,22 @@ const useStyles = makeStyles(theme => ({
 export default function AgentsPresent(props) {
 
   const classes = useStyles();
+  const agentPresentToday =  props.agentPresentToday;
 
 
-  const [data, setData] = useState([]); 
+  // const [data, setData] = useState([]); 
   
   
 
-  useEffect(() => {    
-            entreeService.getAgentsPresents()
-            .then((res) => {
-                setData(res);
-                console.log("Presents",data);
-            });         
+//   useEffect(() => {    
+//             entreeService.getAgentsPresents()
+//             .then((res) => {
+//                 setData(res);
+//                 console.log("Presents",data);
+//             });         
 
         
-}, []); 
+// }, []); 
 
 
 let i=0;
@@ -94,7 +95,7 @@ let i=0;
         </TableRow>
           </TableHead>  
           <TableBody>  
-            {data.map(row=> {  
+            {agentPresentToday.map(row=> {  
               return (  
                 <TableRow key={i=i+1} component="th" scope="row">
                 <TableCell>
