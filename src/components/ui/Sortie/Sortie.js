@@ -64,11 +64,13 @@ const useStyles = makeStyles(theme =>({
         };
         sortieService.createSortie(depointage)
             .then(res => {
+               console.log("RES",res);
                 if(res.message){
                 setMessage('Depointage reussi.');
                 setOpen(true);
                 }
             });
+        
             console.log("depointage",depointage);
             setDateDepointage('');
             setNomAgent('');
@@ -104,12 +106,11 @@ const useStyles = makeStyles(theme =>({
   }
     return(
         <Grid container justify="center" spacing={4} alignItems="center">
-        <Grid item md={6} sm={12} xs={12}>
-        <Paper className={classes.paper }>
+          <Grid item md={6} sm={12} xs={12}>
+           <Paper className={classes.paper }>
             
                    <Typography variant="h4" align ="center" style={{marginBottom:"3rem"}} >Pointage Sortie</Typography>
-               
-            <Grid item md={12} sm={12} xs={12}>
+            
                 
                 <Grid container direction="column" justify="center"  spacing={5} alignItems="center">
                   
@@ -160,10 +161,8 @@ const useStyles = makeStyles(theme =>({
                   
                </Grid>
         
-            
-           </Grid> 
-        
-            <Dialog
+
+              <Dialog
                     open={open}
                     onClose={handleClose}
                     aria-labelledby="alert-dialog-title"
@@ -181,8 +180,8 @@ const useStyles = makeStyles(theme =>({
                 </Button>
         </DialogActions>
       </Dialog>
-      </Paper>
-      </Grid>
+            </Paper>
+          </Grid>
       </Grid>   
         );
 }

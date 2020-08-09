@@ -93,18 +93,6 @@ useEffect(() => {
         </Grid>
       <Grid container spacing={5}>
         <Grid item lg={6} md={6} sm={12} xl={6} xs={12}>
-          <Typography variant="h6" align="center" style={{color:'green'}}>
-             Pointage Entrée
-          </Typography>
-         {entreesToday ? <EntreeListToday entreesToday = {entreesToday} />:null}
-        </Grid>
-        <Grid item  lg={6} md={6} sm={12} xl={6} xs={12}>
-           <Typography variant="h6" align="center" style={{ color:'orange'}}>
-             Pointage Sortie
-           </Typography>
-           {sortiesToday ? <SortieListToday sortiesToday = {sortiesToday}/>: null}
-        </Grid>
-        <Grid item lg={6} md={6} sm={12} xl={6} xs={12}>
           <Typography variant="h6" align="center" style={{color:'red'}}>
              Absents
           </Typography>
@@ -116,7 +104,18 @@ useEffect(() => {
           </Typography>
          {agentPresentToday? <AgentsPresent agentPresentToday = {agentPresentToday}/>: null}
         </Grid>
-        
+        <Grid item lg={6} md={6} sm={12} xl={6} xs={12}>
+          <Typography variant="h6" align="center" style={{color:'green'}}>
+             Pointage Entrée
+          </Typography>
+         {entreesToday ? <EntreeListToday entreesToday = {entreesToday} />:null}
+        </Grid>
+        <Grid item  lg={6} md={6} sm={12} xl={6} xs={12}>
+           <Typography variant="h6" align="center" style={{ color:'orange'}}>
+             Pointage Sortie
+           </Typography>
+           {sortiesToday ? <SortieListToday sortiesToday = {sortiesToday}/>: null}
+        </Grid>
         <Grid item lg={3} md={3} sm={6} xl={3} xs={12}>
           {/* <TotalVehiculeReportLastMonth/> */}
         </Grid>

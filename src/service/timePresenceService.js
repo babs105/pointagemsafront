@@ -1,12 +1,12 @@
 import axios from '../axios/axios';
 
-export const presenceService = {
-    getAllPresence,
+export const timePresenceService = {
+    getAllTimePresence,
 };
 
 
-function getAllPresence() {
-    return axios.get('/presence/getAllPresence').then(handleRegisterResponse)
+function getAllTimePresence() {
+    return axios.get('/timePresence/getAllTimePresence').then(handleRegisterResponse)
       .then(presences => presences);
   }
 

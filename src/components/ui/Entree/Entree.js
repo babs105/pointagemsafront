@@ -182,9 +182,9 @@ const useStyles = makeStyles(theme =>({
                 >
                 <DialogTitle id="alert-dialog-title">{"INFORMATION"}</DialogTitle>
                 <DialogContent>
-                <DialogContentText id="alert-dialog-description">
-                {message}
-                </DialogContentText>
+                 <DialogContentText id="alert-dialog-description">
+                    {message}
+                 </DialogContentText>
                 </DialogContent>
                 <DialogActions>
                 <Button onClick={handleClose} color="primary" autoFocus>

@@ -13,8 +13,8 @@ import TablePagination from '@material-ui/core/TablePagination';
 import CreateIcon from '@material-ui/icons/Create';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Typography from '@material-ui/core/Typography';
-import {presenceService} from '../../../service/presenceService';
-import Loader from '../../ui/Loader/Loader';
+import {timePresenceService} from '../../../service/timePresenceService';
+import Loader from '../Loader/Loader';
 import {ExportXlsx} from './ExportXlsx';
 
 const useStyles = makeStyles(theme => ({
@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const PresenceListComponent = (props)=> {
+const TimePresenceListComponent = (props)=> {
 
    const classes =  useStyles();
    let i=0;
@@ -49,7 +49,7 @@ const PresenceListComponent = (props)=> {
 
 const loadPresenceList = () => {
         setLoader(true)
-        presenceService.getAllPresence()
+        timePresenceService.getAllTimePresence()
             .then((res) => {
                 setData(res);
                 setLoader(false)
@@ -102,10 +102,14 @@ return(
         <TableHead>  
         <TableRow>
         <TableCell align="center">N°: </TableCell>
+        <TableCell align="center">DATE </TableCell>
         <TableCell align="center">NOM AGENT</TableCell>
-        <TableCell align="center">DATE PRESENCE </TableCell>
+        <TableCell align="center">HEURE ENTREE </TableCell>
+        <TableCell align="center">HEURE SORTIE</TableCell>
+        <TableCell align="center">TEMPS DE PRESENCE </TableCell>
            
             
+            <TableCell align="center">ACTIONS </TableCell>
             <TableCell align="center">ACTIONS </TableCell>
         </TableRow>
           </TableHead>  
@@ -127,10 +131,14 @@ return(
               return (  
                 <TableRow key={row.id}>
                   <TableCell align="center">{i=i+1}</TableCell>
-                  <TableCell align="center">{row.nomAgent}</TableCell>
                   <TableCell align="center" component="th" scope="row">
-                    {row.datePresence}
+                    {row.date}
                 </TableCell>
+                  <TableCell align="center">{row.nomAgent}</TableCell>
+                  <TableCell align="center">{row.heureEntree}</TableCell>
+                  <TableCell align="center">{row.heureSortie}</TableCell>
+                  <TableCell align="center">{row.tempsPresent}</TableCell>
+                  
                 <TableCell align="right" onClick={() =>{}}><CreateIcon /></TableCell>
                 <TableCell align="right" onClick={() => {}}><DeleteIcon /></TableCell> 
             </TableRow>
@@ -157,4 +165,4 @@ return(
 </div>
         );
 }  
-export default PresenceListComponent;
+export default TimePresenceListComponent;

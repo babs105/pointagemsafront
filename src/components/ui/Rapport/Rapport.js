@@ -4,7 +4,7 @@ import { Grid, Paper } from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import AbsenceList from './AbsenceList';
-import Presencelist from './PresenceList';
+import TimePresencelist from './TimePresenceList';
 
 
 const useStyles = makeStyles(theme => ({
@@ -98,9 +98,9 @@ export default function Rapport () {
         </Grid>
         <Grid item  lg={12} md={12} sm={12} xl={12} xs={12}>
            <Typography variant="h6" align="center" style={{ color:'green'}}>
-            Présences
+            Temps de Présence
            </Typography>
-           <Presencelist/>
+           <TimePresencelist/>
         </Grid>
         
         
