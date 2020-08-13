@@ -17,6 +17,10 @@ import {entreeService} from '../../../service/entreeService';
 import Loader from '../../ui/Loader/Loader';
 
 const useStyles = makeStyles(theme => ({
+  head: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
     margin: {
         margin: theme.spacing(8) ,
     },
@@ -99,19 +103,17 @@ return(
    
    <Grid container  alignItems="center" justify="center" spacing={3}>
 
-        <Grid item  md={10} sm={12} xs={9}>
+    <Grid item  md={10} sm={12} xs={9}>
   
-   <Paper  style={{marginTop:'20px'}}>  
-      <TableContainer>  
-        <Table stickyHeader aria-label="sticky table">  
-        <TableHead>  
-        <TableRow>
-        <TableCell align="center">N°: </TableCell>
-        <TableCell align="center">AGENT</TableCell>
-        <TableCell align="center">DATE HEURE D'ENTREE </TableCell>
-           
-            
-            <TableCell align="center">ACTIONS </TableCell>
+    
+      <TableContainer component={Paper}>  
+        <Table  stickyHeader aria-label="sticky table">  
+        <TableHead >  
+        <TableRow >
+        <TableCell className={classes.head} align="center">N°: </TableCell>
+        <TableCell className={classes.head}  align="center">AGENT</TableCell>
+        <TableCell className={classes.head}  align="center">DATE HEURE D'ENTREE </TableCell>
+        <TableCell className={classes.head} colSpan={2} align="center">ACTIONS </TableCell>
         </TableRow>
           </TableHead>  
           <TableBody>  
@@ -136,13 +138,11 @@ return(
                   <TableCell align="center" component="th" scope="row">
                     {row.datePointage}
                 </TableCell>
-                <TableCell align="right" onClick={() =>{}}><CreateIcon /></TableCell>
-                <TableCell align="right" onClick={() => {}}><DeleteIcon /></TableCell> 
-            </TableRow>
-                 
+                 <TableCell align="center" onClick={() =>{}}><CreateIcon /></TableCell>
+                 <TableCell align="center" onClick={() => {}}><DeleteIcon /></TableCell> 
+              </TableRow>
               );  
             })  
-
    )}
           </TableBody>  
         </Table>  
@@ -156,10 +156,10 @@ return(
         onChangePage={handleChangePage}  
         onChangeRowsPerPage={handleChangeRowsPerPage}  
       />  
-      </Paper>
+    
     </Grid>
     </Grid> 
 </div>
-        );
+    );
 }  
 export default EntreeListComponent;

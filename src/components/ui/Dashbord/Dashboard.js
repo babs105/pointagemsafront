@@ -44,6 +44,11 @@ export default function Dashboard () {
       loadAgentNotPointer();
 },[]); 
 
+useEffect(() => {
+  return () => {
+    clearInterval(intervalID);
+  }
+}, []);
 
 const loadEntreeTodayList = () => {
   entreeService.getAllPointageToday()
@@ -73,13 +78,6 @@ const loadAgentNotPointer = () => {
     setAgentNotPointerToday(res);
   });   
 }
-
-useEffect(() => {
-  return () => {
-    clearInterval(intervalID);
-  }
-}, []);
-
 
   return (
     <div>

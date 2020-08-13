@@ -17,6 +17,10 @@ import {sortieService} from '../../../service/sortieService';
 import Loader from '../../ui/Loader/Loader';
 
 const useStyles = makeStyles(theme => ({
+  head: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
     margin: {
         margin:theme.spacing(8) ,
     },
@@ -97,11 +101,11 @@ return(
         <Table stickyHeader aria-label="sticky table">  
         <TableHead>  
         <TableRow>
-        <TableCell align="center">N°: </TableCell>
-        <TableCell align="center">AGENT</TableCell>
-        <TableCell align="center">DATE HEURE DE SORTIE </TableCell>
+        <TableCell  className={classes.head} align="center">N°: </TableCell>
+        <TableCell className={classes.head}  align="center">AGENT</TableCell>
+        <TableCell className={classes.head}  align="center">DATE HEURE DE SORTIE </TableCell>
            
-    <TableCell align="center">ACTIONS </TableCell>
+    <TableCell className={classes.head}  align="center" colSpan={2}>ACTIONS </TableCell>
         </TableRow>
           </TableHead>  
           <TableBody>  
@@ -121,13 +125,13 @@ return(
             sorties.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(row => {  
               return (  
                 <TableRow key={row.id}>
-                  <TableCell align="center">{i=i+1}</TableCell>
-                  <TableCell align="center">{row.nomAgent}</TableCell>
-                  <TableCell align="center" component="th" scope="row">
+                  <TableCell   align="center">{i=i+1}</TableCell>
+                  <TableCell   align="center">{row.nomAgent}</TableCell>
+                  <TableCell  align="center" component="th" scope="row">
                     {row.dateDepointage}
                 </TableCell>
-                <TableCell align="right" onClick={() =>{}}><CreateIcon /></TableCell>
-                <TableCell align="right" onClick={() => {}}><DeleteIcon /></TableCell> 
+                <TableCell align="center" onClick={() =>{}}><CreateIcon /></TableCell>
+                <TableCell align="center" onClick={() => {}}><DeleteIcon /></TableCell> 
             </TableRow>
                  
               );  

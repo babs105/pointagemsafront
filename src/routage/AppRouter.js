@@ -14,9 +14,7 @@ const authentication = () =>
 	);
 
 const AppRouter= () => {
-
 		return (
-		
 						<BrowserRouter>	
 							<Switch>	
 								<Route path="/" component={authentication} />
