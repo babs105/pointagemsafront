@@ -31,30 +31,31 @@ const useStyles = makeStyles(theme => ({
 const AbsenceListComponent = (props)=> {
 
    const classes =  useStyles();
+   const data = props.absences ;
    let i=0;
 
 
-  const [data,setData] = useState([]);
+  // const [data,setData] = useState([]);
   const [loader,setLoader] = useState(false)
   const [page, setPage] = useState(0);  
   const [rowsPerPage, setRowsPerPage] = useState(5);  
 
-    useEffect(() =>{
+    // useEffect(() =>{
 
-        loadAbsenceList();
-    },[]);
+    //     loadAbsenceList();
+    // },[]);
   
 
 
 
-const loadAbsenceList = () => {
-        setLoader(true)
-        absenceService.getAllAbsence()
-            .then((res) => {
-                setData(res);
-                setLoader(false)
-            })
-    };
+// const loadAbsenceList = () => {
+//         setLoader(true)
+//         absenceService.getAllAbsence()
+//             .then((res) => {
+//                 setData(res);
+//                 setLoader(false)
+//             })
+//     };
 const handleChangePage = (event, newPage) => {  
                 setPage(newPage);  
               };  
@@ -110,7 +111,8 @@ return(
         </TableRow>
           </TableHead>  
           <TableBody>  
-          {loader ?
+          {
+          /* {loader ?
        <Grid container alignItems="center" justify="center" >
                
     <Grid item >
@@ -121,7 +123,7 @@ return(
        </div>
     </Paper>
     </Grid>
-   </Grid>:(
+   </Grid>:( */
       
             data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(row => {  
               return (  
@@ -135,10 +137,9 @@ return(
                 <TableCell align="right" onClick={() => {}}><DeleteIcon /></TableCell> 
             </TableRow>
                  
-              );  
-            })  
+              );          
 
-   )}
+   })}
           </TableBody>  
         </Table>  
       </TableContainer>  

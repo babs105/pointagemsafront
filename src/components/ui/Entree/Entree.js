@@ -215,7 +215,7 @@ const useStyles = makeStyles(theme =>({
               ContentProps={{style:{backgroundColor:alert.backgroundColor}}}
               anchorOrigin={{vertical:"bottom",horizontal:"center"}}
               onClose={()=>setAlert({...alert,open:false})}
-              autoHideDuration={4000}              />
+              autoHideDuration={4000}/>
          </Paper>
      </Grid>
    </Grid>

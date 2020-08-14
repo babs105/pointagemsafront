@@ -10,9 +10,12 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 import AbsenceList from './AbsenceList';
 import TimePresencelist from './TimePresenceList';
 import {timePresenceService} from '../../../service/timePresenceService';
+import {absenceService} from '../../../service/absenceService';
 
 
 const useStyles = makeStyles(theme => ({
@@ -29,28 +32,30 @@ export default function Rapport () {
 //   const [agentPresentToday,setAgentPresentToday] = useState([]);
 //   const [agentNotPointerToday,setAgentNotPointerToday] = useState([]);
 const [rapport,setRapport] = useState(false);
+const [loading,setLoading] = useState(false);
+const [absences,setAbsences] = useState([]);
+const [timePresences,setTimePresences] = useState([]);
 const [open,setOpen] = useState(false);
 const [message,setMessage] = useState("");
   
 
 
-//   useEffect(() => {    
+  useEffect(() => {    
     
-//     intervalID = setInterval(
-//       () => { 
+    // intervalID = setInterval(
+    //   () => { 
         
-//         loadEntreeTodayList();
-//         loadSortieTodayList();
-//         loadAgentsPresent();
-//         loadAgentNotPointer();
-//         console.log("reload");
-//         },1000
-//       );
-//       loadEntreeTodayList();
-//       loadSortieTodayList();
-//       loadAgentsPresent();
-//       loadAgentNotPointer();
-// },[]); 
+    //     loadEntreeTodayList();
+    //     loadSortieTodayList();
+    //     loadAgentsPresent();
+    //     loadAgentNotPointer();
+    //     console.log("reload");
+    //     },1000
+    //   );
+    loadAbsenceList();
+      loadPresenceList();
+      
+},[]); 
 
 
 // const loadEntreeTodayList = () => {
@@ -74,20 +79,46 @@ const [message,setMessage] = useState("");
      
 //   }); 
 // }
+const loadAbsenceList = () => {
+  
+  absenceService.getAllAbsence()
+      .then((res) => {
+          setAbsences(res);
+          
+      })
+};
+const loadPresenceList = () => {
+
+  timePresenceService.getAllTimePresence()
+      .then((res) => {
+          setTimePresences(res);
+          
+      })
+};
 const geneRapport = () => {
+  setLoading(true)
   timePresenceService.genereAllTimePresence()
   .then((res) => {
     if(res.generate){
       setRapport(true);
+      setLoading(false);
+      loadAbsenceList();
+      loadPresenceList();
       setMessage(res.message)
       setOpen(true);
     }else{
-      setRapport(true);
-      setMessage("ERROR GENERATION RAPPORT")
+      setRapport(false);
+      setMessage("ERROR GENERATION RAPPORT");
+      setLoading(false);
       setOpen(true);
     }
   
      
+  }).catch( ()=>{ 
+    setOpen(true);
+    setRapport(false);
+    setLoading(false);
+    setMessage("Erreur ressayez plustard!")
   }); 
 }
 // const loadAgentNotPointer = () => {
@@ -104,7 +135,11 @@ const geneRapport = () => {
 //   }
 // }, []);
 
-
+const buttonContents = (
+  <React.Fragment>
+      Générer rapport 
+  </React.Fragment>
+);
   return (
     <div>
         <br/>
@@ -114,24 +149,24 @@ const geneRapport = () => {
                     <Typography  variant="h6" align="center" color="primary"> Rapports</Typography>
                 </Paper>
             </Grid> */}
-            <Grid item >
-<Button variant="contained"  color="primary" onClick={geneRapport}>
-        Générer rapport
-      </Button>
-      </Grid>
+            <Grid item   >
+             <Button variant="contained" style={{width:"15rem",}} fullWidth color="primary" onClick={geneRapport}>
+               {loading ? <CircularProgress style={{color:"white"}} size={30}/>:buttonContents}
+             </Button>
+             </Grid>
         </Grid>
       <Grid container spacing={5}>
         <Grid item lg={12} md={12} sm={12} xl={12} xs={12}>
           <Typography variant="h6" align="center" style={{color:'red'}}>
              Absences
           </Typography>
-         <AbsenceList/>
+       { absences ?  <AbsenceList absences={absences}/>: null}
         </Grid>
         <Grid item  lg={12} md={12} sm={12} xl={12} xs={12}>
            <Typography variant="h6" align="center" style={{ color:'green'}}>
             Temps de Présence
            </Typography>
-           <TimePresencelist/>
+        { timePresences ?   <TimePresencelist timePresences ={timePresences}/> : null}
         </Grid>
         
         

@@ -17,6 +17,11 @@ import {agentService} from '../../../service/agentService';
 import Loader from '../../ui/Loader/Loader';
 
 const useStyles = makeStyles(theme => ({
+  head: {
+    backgroundColor: theme.palette.common.arcGreen,
+    fontSize:"1rem",
+    fontWeight:700
+  },
     margin: {
         margin: theme.spacing(8) ,
     },
@@ -100,17 +105,17 @@ return(
 
         <Grid item  md={10} sm={12} xs={9}>
   
-   <Paper  style={{marginTop:'20px'}}>  
-      <TableContainer>  
+   
+      <TableContainer component={Paper}>  
         <Table stickyHeader aria-label="sticky table">  
         <TableHead>  
         <TableRow>
-        <TableCell align="center">N°: </TableCell>
-        <TableCell align="center">NOM AGENT</TableCell>
-        <TableCell align="center">SERVICE </TableCell>
+        <TableCell className={classes.head}  align="center">N°: </TableCell>
+        <TableCell className={classes.head}  align="center">NOM AGENT</TableCell>
+        <TableCell className={classes.head}  align="center">SERVICE </TableCell>
            
             
-            <TableCell align="center">ACTIONS </TableCell>
+            <TableCell className={classes.head} align="center" colSpan={2}>ACTIONS </TableCell>
         </TableRow>
           </TableHead>  
           <TableBody>  
@@ -135,8 +140,8 @@ return(
                   <TableCell align="center" component="th" scope="row">
                     {row.serviceName}
                 </TableCell>
-                <TableCell align="right" onClick={() =>{}}><CreateIcon /></TableCell>
-                <TableCell align="right" onClick={() => {}}><DeleteIcon /></TableCell> 
+                <TableCell align="center" onClick={() =>{}}><CreateIcon /></TableCell>
+                <TableCell align="center" onClick={() => {}}><DeleteIcon /></TableCell> 
             </TableRow>
                  
               );  
@@ -155,7 +160,6 @@ return(
         onChangePage={handleChangePage}  
         onChangeRowsPerPage={handleChangeRowsPerPage}  
       />  
-      </Paper>
     </Grid>
     </Grid> 
 </div>

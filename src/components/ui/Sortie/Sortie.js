@@ -7,8 +7,12 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import {makeStyles} from '@material-ui/core/styles'
 import {Grid, TextField, Button,MenuItem,Paper} from '@material-ui/core';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Snackbar from '@material-ui/core/Snackbar';
+
 import {sortieService} from '../../../service/sortieService';
 import {agentService} from '../../../service/agentService';
+
 
 const useStyles = makeStyles(theme =>({
     textField:{
@@ -39,6 +43,8 @@ const useStyles = makeStyles(theme =>({
     const [open,setOpen] = useState(false);
     const [agents,setAgents] = useState([]);
     const [message,setMessage] = useState('');
+    const [loading,setLoading] = useState(false);
+    const [alert,setAlert] = useState({open:false,message :"",backgroundColor:""});
 
 
 
@@ -67,13 +73,23 @@ const useStyles = makeStyles(theme =>({
                console.log("RES",res);
                 if(res.message){
                 setMessage('Depointage reussi.');
+                setDateDepointage('');
+                setNomAgent('');
                 setOpen(true);
-                }
+                setAlert({open:true,message:"Pointage Sortie reussi !",backgroundColor:"#4BB543"})
+                }else {
+                  setAlert({open:true,message:"Pointage Sortie Echoué! Ressayez encore !",backgroundColor:"#FF3232"})
+                  }
+            }).catch(()=>{
+              setLoading(false);
+              setDateDepointage('');
+              setNomAgent('');
+              setAlert({open:true,message:"Pointage Sortie Echoué! Ressayez encore !",backgroundColor:"#FF3232"});
+
             });
         
-            console.log("depointage",depointage);
-            setDateDepointage('');
-            setNomAgent('');
+           // console.log("depointage",depointage);
+      
     }
   const onChange =(event)=>{
    let valid;
@@ -101,9 +117,14 @@ const useStyles = makeStyles(theme =>({
      
  };
 
-  const handleClose = () => {
-    setOpen(false);
-  }
+  // const handleClose = () => {
+  //   setOpen(false);
+  // }
+  const buttonContents = (
+    <React.Fragment>
+      Valider
+    </React.Fragment>
+  );
     return(
         <Grid container justify="center" spacing={4} alignItems="center">
           <Grid item md={6} sm={12} xs={12}>
@@ -156,13 +177,15 @@ const useStyles = makeStyles(theme =>({
                           nomAgent.length === 0 ||dateDepointage.length === 0 ||
                           nomAgentHelper.length!==0 
                        } 
-                     variant="contained" className={classes.sendButton} fullWidth color="primary"  onClick={createSortie}>Valider</Button>
+                     variant="contained" className={classes.sendButton} fullWidth color="primary"  onClick={createSortie}>
+                         {loading ? <CircularProgress style={{color:"white"}} size={30}/> : buttonContents}
+                       </Button>
             </Grid>
                   
                </Grid>
         
 
-              <Dialog
+              {/* <Dialog
                     open={open}
                     onClose={handleClose}
                     aria-labelledby="alert-dialog-title"
@@ -179,7 +202,14 @@ const useStyles = makeStyles(theme =>({
                    FERMER
                 </Button>
         </DialogActions>
-      </Dialog>
+      </Dialog> */}
+       <Snackbar 
+              open={alert.open}
+              message={alert.message} 
+              ContentProps={{style:{backgroundColor:alert.backgroundColor}}}
+              anchorOrigin={{vertical:"bottom",horizontal:"center"}}
+              onClose={()=>setAlert({...alert,open:false})}
+              autoHideDuration={4000}/>
             </Paper>
           </Grid>
       </Grid>   

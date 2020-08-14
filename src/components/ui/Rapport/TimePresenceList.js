@@ -31,30 +31,31 @@ const useStyles = makeStyles(theme => ({
 const TimePresenceListComponent = (props)=> {
 
    const classes =  useStyles();
+   const data = props.timePresences ;
    let i=0;
 
 
-  const [data,setData] = useState([]);
+  // const [data,setData] = useState([]);
   const [loader,setLoader] = useState(false)
   const [page, setPage] = useState(0);  
   const [rowsPerPage, setRowsPerPage] = useState(5);  
 
-    useEffect(() =>{
+    // useEffect(() =>{
 
-        loadPresenceList();
-    },[]);
+//         loadPresenceList();
+//     },[]);
   
 
 
 
-const loadPresenceList = () => {
-        setLoader(true)
-        timePresenceService.getAllTimePresence()
-            .then((res) => {
-                setData(res);
-                setLoader(false)
-            })
-    };
+// const loadPresenceList = () => {
+//         setLoader(true)
+//         timePresenceService.getAllTimePresence()
+//             .then((res) => {
+//                 setData(res);
+//                 setLoader(false)
+//             })
+//     };
 const handleChangePage = (event, newPage) => {  
                 setPage(newPage);  
               };  
@@ -81,7 +82,7 @@ const addAgent = () =>{
         window.localStorage.removeItem("userId");
         
     }
-
+   
 return(
 
 <div>
@@ -114,18 +115,19 @@ return(
         </TableRow>
           </TableHead>  
           <TableBody>  
-          {loader ?
-       <Grid container alignItems="center" justify="center" >
+          {
+  //         loader ?
+  //      <Grid container alignItems="center" justify="center" >
                
-    <Grid item >
-      <Paper className={classes.paper } >
-       <div className={classes.margin}>
-       <Loader/>
+  //   <Grid item >
+  //     <Paper className={classes.paper } >
+  //      <div className={classes.margin}>
+  //      <Loader/>
       
-       </div>
-    </Paper>
-    </Grid>
-   </Grid>:(
+  //      </div>
+  //   </Paper>
+  //   </Grid>
+  //  </Grid>:(
       
             data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(row => {  
               return (  
@@ -144,9 +146,7 @@ return(
             </TableRow>
                  
               );  
-            })  
-
-   )}
+            }) }
           </TableBody>  
         </Table>  
       </TableContainer>  

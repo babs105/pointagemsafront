@@ -18,8 +18,10 @@ import Loader from '../../ui/Loader/Loader';
 
 const useStyles = makeStyles(theme => ({
   head: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
+    backgroundColor: theme.palette.common.arcGreen,
+    fontSize:"1rem",
+    fontWeight:700
+    
   },
     margin: {
         margin: theme.spacing(8) ,

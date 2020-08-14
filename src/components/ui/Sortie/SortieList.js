@@ -18,8 +18,9 @@ import Loader from '../../ui/Loader/Loader';
 
 const useStyles = makeStyles(theme => ({
   head: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
+    backgroundColor: theme.palette.common.arcGreen,
+    fontSize:"1rem",
+    fontWeight:700
   },
     margin: {
         margin:theme.spacing(8) ,
@@ -96,8 +97,8 @@ return(
 <Grid container  alignItems="center" justify="center" spacing={3}>
 
    <Grid item  md={10} sm={12} xs={9}>
-      <Paper  style={{marginTop:'20px'}}>  
-      <TableContainer>  
+     
+      <TableContainer component={Paper}>  
         <Table stickyHeader aria-label="sticky table">  
         <TableHead>  
         <TableRow>
@@ -149,7 +150,7 @@ return(
         onChangePage={handleChangePage}  
         onChangeRowsPerPage={handleChangeRowsPerPage}  
       />  
-    </Paper>
+  
     </Grid>
     </Grid> 
  
