@@ -10,7 +10,7 @@ const PublicRoutes = () => (
 		<Switch>
 			{/* <Route path="/forgot-password" component={ForgotPassword} /> */}
 			{/* <Route path="/register" component={Register} /> */}
-			<Route exact path="/" exact component={Login} />
+			<Route exact path="/" component={Login} />
 			<Redirect to="/" />
 		</Switch>
 		</Container>

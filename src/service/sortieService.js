@@ -3,11 +3,18 @@ import axios from '../axios/axios';
 export const sortieService = {
  createSortie,
  getAllDepointage,
- getAllDepointageToday
+ getAllDepointageToday,
+ deleteSortieById,
+ getDepointageById,
+ createOrUpdateSortie
   
 };
+function createOrUpdateSortie(sortie) {
+  return axios.post('/depointage/create', sortie).then(handleRegisterResponse)
+    .then(sortie => sortie);
+}
+
 function createSortie(sortie) {
-  
   return axios.post('/depointage/depointer', sortie).then(handleRegisterResponse)
     .then(sortie => sortie);
 }
@@ -19,23 +26,15 @@ function getAllDepointage() {
     return axios.get('/depointage/getAllDepointageToday').then(handleRegisterResponse)
       .then(depointages => depointages);
   }
-  
-//   function getCuveByIdCuve(idCuve){
-//     return axios.get('/cuve/getCuveByIdCuve/' + idCuve).then(handleRegisterResponse)
-//       .then(cuve => cuve);
-//   }
-//   function getCuveById(cuveId){
-//     return axios.get('/cuve/getCuveById/' + cuveId).then(handleRegisterResponse)
-//       .then(cuve => cuve);
-//   }
-//   function getCuveByCuveName(cuveName) {
-//     return axios.get('/cuve/getCuveByCuveName/'+ cuveName).then(handleRegisterResponse)
-//       .then(cuve => cuve);
-//   }
-//   function deleteCuveByCuveName(cuveName) {
-//     return axios.delete('/cuve/deleteCuveByCuveName/'+ cuveName).then(handleRegisterResponse)
-//       .then(cuve => cuve);
-//   }
+  function deleteSortieById(id) {
+    return axios.delete('/depointage/delete/'+id).then(handleRegisterResponse)
+      .then(sortie => sortie);
+  }
+  function getDepointageById(id) {
+    return axios.get('/depointage/getDepointageById/'+id).then(handleRegisterResponse)
+      .then(depointage => depointage);
+  }
+
 
 function handleRegisterResponse(response) {
   const { data } = response;
